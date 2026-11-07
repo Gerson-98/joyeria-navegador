@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover" />
+  <title>Usuarios - Joyería</title>
+
+  <link rel="manifest" href="../manifest.json" />
+  <meta name="theme-color" content="#2b3350" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="apple-mobile-web-app-title" content="Joyería" />
+  <link rel="apple-touch-icon" href="../icons/icon-192.png" />
+
+  <link rel="stylesheet" href="../css/styles.css" />
+</head>
+<body>
+  <div class="app-shell">
+    <header class="app-header">
+      <div class="app-header__izquierda">
+        <img src="../icons/logo.png" alt="Joyería" class="logo-imagen--header" />
+        <h1 class="app-header__titulo">Joyería</h1>
+      </div>
+
+      <nav class="app-nav">
+        <a href="inicio.html">🏠 Inicio</a>
+        <a href="venta.html">🛒 Vender</a>
+        <a href="caja.html">💵 Caja</a>
+        <a href="productos.html">📦 Productos</a>
+        <a href="reportes.html" id="nav-reportes">📊 Reportes</a>
+        <a href="respaldo.html">☁️ Respaldo</a>
+        <a href="usuarios.html" class="activo">⚙️ Usuarios</a>
+      </nav>
+
+      <div class="app-header__derecha">
+        <span class="app-header__usuario" id="nombre-usuario-activo"></span>
+        <button class="boton-salir" id="boton-salir">Salir</button>
+      </div>
+    </header>
+
+    <main class="app-main">
+      <div class="tarjeta-negocio">
+        <h3>🏪 Datos del negocio</h3>
+        <div class="campo campo--compacto">
+          <label for="negocio-telefono">Teléfono (se imprime en el recibo)</label>
+          <input type="tel" id="negocio-telefono" inputmode="tel" placeholder="Ej. 5555-1234" />
+        </div>
+        <div class="campo campo--compacto">
+          <label for="negocio-direccion">Dirección (se imprime en el recibo)</label>
+          <input type="text" id="negocio-direccion" maxlength="120" placeholder="Ej. 3a calle 4-15 zona 1" />
+        </div>
+        <div class="mensaje-error" id="error-negocio"></div>
+        <div class="mensaje-exito oculto" id="exito-negocio">Guardado.</div>
+        <button type="button" class="boton boton-primario boton-ancho-auto" id="boton-guardar-negocio">Guardar datos del negocio</button>
+      </div>
+
+      <div class="app-main__header">
+        <div>
+          <h2>🔐 Usuarios (cuentas de acceso)</h2>
+          <p class="subtitulo-seccion">Cuentas que inician sesión en la tablet: la del cajero donde entra todo el personal y las de administración.</p>
+        </div>
+        <button class="boton boton-primario boton-ancho-auto" id="boton-nuevo-usuario">
+          + Nuevo usuario
+        </button>
+      </div>
+
+      <div id="lista-usuarios" class="lista-tarjetas"></div>
+
+      <div id="estado-vacio" class="estado-vacio oculto">
+        <span class="icono">👤</span>
+        <p>Todavía no has agregado usuarios.<br />Toca "Nuevo usuario" para empezar.</p>
+      </div>
+
+      <div class="app-main__header oculto" style="margin-top:32px;">
+        <div>
+          <h2>🧾 Vendedores</h2>
+          <p class="subtitulo-seccion">Solo nombre y código de 4 números. No inician sesión: se identifican con su código al vender, abrir caja o registrar gastos.</p>
+        </div>
+        <button class="boton boton-primario boton-ancho-auto" id="boton-nuevo-vendedor">
+          + Nuevo vendedor
+        </button>
+      </div>
+
+      <div id="lista-vendedores" class="lista-tarjetas"></div>
+
+      <div id="estado-vacio-vendedores" class="estado-vacio oculto">
+        <span class="icono">🧾</span>
+        <p>Todavía no has agregado vendedores.<br />Toca "Nuevo vendedor" para empezar.</p>
+      </div>
+    </main>
+  </div>
+
+  <!-- Modal crear/editar vendedor -->
+  <div class="fondo-modal oculto" id="fondo-modal-vendedor">
+    <div class="tarjeta-modal">
+      <button type="button" class="boton-cerrar-modal-x" id="boton-cerrar-vendedor-x">✕</button>
+      <h3 id="titulo-modal-vendedor">Nuevo vendedor</h3>
+
+      <form id="form-vendedor">
+        <input type="hidden" id="vendedor-id" />
+
+        <div class="mensaje-error" id="error-vendedor"></div>
+
+        <div class="campo">
+          <label for="vendedor-nombre">Nombre</label>
+          <input type="text" id="vendedor-nombre" required />
+        </div>
+
+        <div class="campo">
+          <label for="vendedor-pin">🔑 Código (4 números)</label>
+          <input type="text" id="vendedor-pin" inputmode="numeric" maxlength="4" autocomplete="off" placeholder="Ej. 2222" />
+          <p class="nota-password" id="nota-pin-vendedor" style="margin:6px 0 0;">
+            Cada vendedor debe tener un código distinto.
+          </p>
+        </div>
+
+        <div class="campo campo-checkbox oculto" id="campo-vendedor-activo">
+          <label for="vendedor-activo">
+            <input type="checkbox" id="vendedor-activo" checked />
+            Vendedor activo
+          </label>
+        </div>
+
+        <div class="modal-acciones">
+          <button type="button" class="boton boton-secundario" id="boton-cancelar-vendedor">Cancelar</button>
+          <button type="submit" class="boton boton-primario">Guardar</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Modal crear/editar usuario -->
+  <div class="fondo-modal oculto" id="fondo-modal">
+    <div class="tarjeta-modal">
+      <button type="button" class="boton-cerrar-modal-x" id="boton-cerrar-modal-x">✕</button>
+      <h3 id="titulo-modal">Nuevo usuario</h3>
+
+      <form id="form-usuario">
+        <input type="hidden" id="usuario-id" />
+
+        <div class="mensaje-error" id="error-usuario"></div>
+
+        <div class="campo">
+          <label for="usuario-nombre">Nombre</label>
+          <input type="text" id="usuario-nombre" required />
+        </div>
+
+        <div class="campo">
+          <label for="usuario-login">Usuario (login)</label>
+          <input type="text" id="usuario-login" required />
+        </div>
+
+        <div class="campo">
+          <label for="usuario-rol">Rol</label>
+          <select id="usuario-rol">
+            <option value="cajero">Cajero</option>
+            <option value="administrador">Administrador</option>
+          </select>
+        </div>
+
+        <div class="campo">
+          <label for="usuario-password">Contraseña</label>
+          <input type="password" id="usuario-password" autocomplete="new-password" />
+        </div>
+
+        <div class="campo">
+          <label for="usuario-password-confirmar">Confirmar contraseña</label>
+          <input type="password" id="usuario-password-confirmar" autocomplete="new-password" />
+        </div>
+
+        <p class="nota-password oculto" id="nota-password">
+          Deja los campos de contraseña en blanco para no cambiarla.
+        </p>
+
+        <div class="campo oculto">
+          <label for="usuario-pin">🔑 Código de venta (opcional)</label>
+          <input type="text" id="usuario-pin" inputmode="numeric" maxlength="4" autocomplete="off" placeholder="Ej. 2222" />
+          <p class="nota-password" id="nota-pin" style="margin:6px 0 0;">
+            Solo si esta persona también vende con su propia cuenta (ej. la administradora). Para el personal de ventas usa "Nuevo vendedor". El código debe ser distinto al de los demás.
+          </p>
+        </div>
+
+        <div class="campo campo-checkbox oculto" id="campo-quitar-pin">
+          <label for="usuario-quitar-pin">
+            <input type="checkbox" id="usuario-quitar-pin" />
+            Quitar el código de este usuario
+          </label>
+        </div>
+
+        <div class="campo campo-checkbox oculto" id="campo-activo">
+          <label for="usuario-activo">
+            <input type="checkbox" id="usuario-activo" checked />
+            Cuenta activa
+          </label>
+        </div>
+
+        <div class="modal-acciones">
+          <button type="button" class="boton boton-secundario" id="boton-cancelar-modal">Cancelar</button>
+          <button type="submit" class="boton boton-primario">Guardar</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script src="../js/sha256.js"></script>
+  <script src="../js/db.js"></script>
+  <script src="../js/auth.js"></script>
+  <script src="../js/usuarios.js"></script>
+  <script src="../js/registrar-sw.js"></script>
+</body>
+</html>

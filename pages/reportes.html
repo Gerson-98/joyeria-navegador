@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover" />
+  <title>Reportes - Joyería</title>
+
+  <link rel="manifest" href="../manifest.json" />
+  <meta name="theme-color" content="#2b3350" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="apple-mobile-web-app-title" content="Joyería" />
+  <link rel="apple-touch-icon" href="../icons/icon-192.png" />
+
+  <link rel="stylesheet" href="../css/styles.css" />
+</head>
+<body>
+  <div class="app-shell">
+    <header class="app-header">
+      <div class="app-header__izquierda">
+        <img src="../icons/logo.png" alt="Joyería" class="logo-imagen--header" />
+        <h1 class="app-header__titulo">Joyería</h1>
+      </div>
+
+      <nav class="app-nav">
+        <a href="inicio.html">🏠 Inicio</a>
+        <a href="venta.html">🛒 Vender</a>
+        <a href="caja.html">💵 Caja</a>
+        <a href="productos.html">📦 Productos</a>
+        <a href="reportes.html" class="activo" id="nav-reportes">📊 Reportes</a>
+        <a href="respaldo.html" id="nav-respaldo">☁️ Respaldo</a>
+        <a href="usuarios.html" id="nav-usuarios">⚙️ Usuarios</a>
+      </nav>
+
+      <div class="app-header__derecha">
+        <span class="app-header__usuario" id="nombre-usuario-activo"></span>
+        <button class="boton-salir" id="boton-salir">Salir</button>
+      </div>
+    </header>
+
+    <main class="app-main">
+      <div class="app-main__header">
+        <h2>Reportes de ventas</h2>
+      </div>
+
+      <div class="tarjetas-resumen">
+        <div class="tarjeta-resumen">
+          <span class="tarjeta-resumen__etiqueta">Hoy</span>
+          <span class="tarjeta-resumen__total" id="resumen-hoy-total">Q 0.00</span>
+          <span class="tarjeta-resumen__cantidad" id="resumen-hoy-cantidad">0 ventas</span>
+        </div>
+        <div class="tarjeta-resumen oculto" id="tarjeta-semana">
+          <span class="tarjeta-resumen__etiqueta">Esta semana</span>
+          <span class="tarjeta-resumen__total" id="resumen-semana-total">Q 0.00</span>
+          <span class="tarjeta-resumen__cantidad" id="resumen-semana-cantidad">0 ventas</span>
+        </div>
+        <div class="tarjeta-resumen oculto" id="tarjeta-mes">
+          <span class="tarjeta-resumen__etiqueta">Este mes</span>
+          <span class="tarjeta-resumen__total" id="resumen-mes-total">Q 0.00</span>
+          <span class="tarjeta-resumen__cantidad" id="resumen-mes-cantidad">0 ventas</span>
+        </div>
+      </div>
+
+      <div class="app-main__header" id="titulo-caja-cajero">
+        <h2 style="font-size:18px;">💵 Para cuadrar caja hoy</h2>
+      </div>
+      <div class="tarjetas-resumen" id="resumen-metodos-pago">
+        <div class="tarjeta-resumen">
+          <span class="tarjeta-resumen__etiqueta">Efectivo</span>
+          <span class="tarjeta-resumen__total" id="resumen-efectivo-total">Q 0.00</span>
+        </div>
+        <div class="tarjeta-resumen">
+          <span class="tarjeta-resumen__etiqueta">Tarjeta</span>
+          <span class="tarjeta-resumen__total" id="resumen-tarjeta-total">Q 0.00</span>
+        </div>
+        <div class="tarjeta-resumen">
+          <span class="tarjeta-resumen__etiqueta">Depósito</span>
+          <span class="tarjeta-resumen__total" id="resumen-deposito-total">Q 0.00</span>
+        </div>
+        <div class="tarjeta-resumen oculto">
+          <span class="tarjeta-resumen__etiqueta">🛍️ Pedidos Ya</span>
+          <span class="tarjeta-resumen__total" id="resumen-pedidosya-total">Q 0.00</span>
+          <span class="tarjeta-resumen__cantidad">Se cobra a la cuenta de Pedidos Ya</span>
+        </div>
+      </div>
+
+      <div class="pestanas-periodo" id="pestanas-periodo">
+        <button class="pestana-periodo activo" data-periodo="dia">Hoy</button>
+        <button class="pestana-periodo" data-periodo="dia-especifico">Día específico</button>
+        <button class="pestana-periodo oculto" data-periodo="semana-especifica">Semana específica</button>
+        <button class="pestana-periodo oculto" data-periodo="mes-especifico">Mes específico</button>
+        <button class="pestana-periodo oculto" data-periodo="anio-especifico">Año específico</button>
+        <button class="pestana-periodo oculto" data-periodo="rango">Rango de fechas</button>
+      </div>
+
+      <div class="filtro-especifico-controles" id="filtro-especifico-controles">
+        <input type="date" id="filtro-fecha-dia" class="oculto" />
+        <input type="date" id="filtro-fecha-semana" class="oculto" title="Elige cualquier día de la semana que quieres ver" />
+        <input type="month" id="filtro-fecha-mes" class="oculto" />
+        <select id="filtro-fecha-anio" class="oculto"></select>
+        <div id="filtro-rango-fechas" class="filtro-rango-fechas oculto">
+          <div class="campo campo--compacto">
+            <label for="filtro-rango-desde">Desde</label>
+            <input type="date" id="filtro-rango-desde" />
+          </div>
+          <div class="campo campo--compacto">
+            <label for="filtro-rango-hasta">Hasta</label>
+            <input type="date" id="filtro-rango-hasta" />
+          </div>
+        </div>
+      </div>
+
+      <div class="app-main__header">
+        <h3 id="titulo-ventas-vendedor" style="font-size:16px; margin:0;">Ventas por vendedor</h3>
+      </div>
+      <div class="pagos-electronicos" id="ventas-por-vendedor"></div>
+
+      <div class="app-main__header">
+        <h3 id="titulo-pagos-electronicos" style="font-size:16px; margin:0;">Depósitos y tarjetas</h3>
+      </div>
+      <div class="pagos-electronicos" id="pagos-electronicos"></div>
+
+      <div class="app-main__header">
+        <h3 id="titulo-periodo-tabla" style="font-size:16px; margin:0;">Ventas de hoy</h3>
+      </div>
+
+      <div class="tabla-reportes-envoltorio">
+        <table class="tabla-reportes">
+          <thead>
+            <tr>
+              <th>N° recibo</th>
+              <th>Fecha y hora</th>
+              <th>Vendedor</th>
+              <th>Método de pago</th>
+              <th>Entrega</th>
+              <th>Cliente</th>
+              <th>Total</th>
+              <th>Recibo</th>
+              <th>Acción</th>
+            </tr>
+          </thead>
+          <tbody id="cuerpo-tabla-reportes"></tbody>
+        </table>
+      </div>
+
+      <div id="estado-vacio-reportes" class="estado-vacio oculto">
+        <span class="icono">🧾</span>
+        <p>No hay ventas registradas en este periodo.</p>
+      </div>
+    </main>
+  </div>
+
+  <!-- Recibo (reimpresión) -->
+  <div class="fondo-modal oculto" id="fondo-recibo">
+    <div class="tarjeta-modal tarjeta-recibo">
+      <button type="button" class="boton-cerrar-modal-x" id="boton-cerrar-recibo-x">✕</button>
+      <div id="recibo-contenido" class="recibo-contenido"></div>
+
+      <canvas id="recibo-canvas" style="display:none;"></canvas>
+
+      <div class="modal-acciones">
+        <button type="button" class="boton boton-primario" id="boton-imprimir-directo">🖨️ Imprimir</button>
+        <button type="button" class="boton boton-secundario" id="boton-compartir-recibo">Compartir imagen</button>
+        <button type="button" class="boton boton-primario" id="boton-cerrar-recibo">Cerrar</button>
+      </div>
+
+      <a id="enlace-descarga-recibo" class="enlace-descarga oculto" download="recibo.png">
+        Descargar imagen del recibo
+      </a>
+    </div>
+  </div>
+
+  <script src="../js/sha256.js"></script>
+  <script src="../js/db.js"></script>
+  <script src="../js/auth.js"></script>
+  <script src="../js/pin.js"></script>
+  <script src="../js/impresora-ble.js"></script>
+  <script src="../js/reportes.js"></script>
+  <script src="../js/registrar-sw.js"></script>
+</body>
+</html>

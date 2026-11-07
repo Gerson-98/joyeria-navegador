@@ -1,0 +1,4 @@
+respaldo-seed*.json
+.claude/
+node_modules/
+demo/
