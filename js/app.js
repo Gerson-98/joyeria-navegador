@@ -18,15 +18,17 @@ document.addEventListener('DOMContentLoaded', async () => {
     return;
   }
 
-  // Demostración: se crea el administrador la primera vez (usuario admin, contraseña 12345).
-  if (!(await Auth.existeAlgunUsuario())) {
-    try {
-      await Auth.crearUsuario({ nombre: 'Administrador', usuario: 'admin', password: '12345', rol: 'administrador' });
-    } catch (err) { /* si falla se muestra el formulario normal */ }
-  }
+  // Demostración: siempre existe la cuenta demo (usuario demo, contraseña demo),
+  // también en dispositivos que ya habían abierto una versión anterior.
+  try {
+    const cuentaDemo = await DB.obtenerUnoPorIndice(DB.STORES.USUARIOS, 'usuario', 'demo');
+    if (!cuentaDemo) {
+      await Auth.crearUsuario({ nombre: 'Administrador', usuario: 'demo', password: 'demo', rol: 'administrador' });
+    }
+  } catch (err) { /* si falla se muestra el formulario normal */ }
   const hayUsuarios = await Auth.existeAlgunUsuario();
-  document.getElementById('login-usuario').value = 'admin';
-  document.getElementById('login-password').value = '12345';
+  document.getElementById('login-usuario').value = 'demo';
+  document.getElementById('login-password').value = 'demo';
 
   if (hayUsuarios) {
     formLogin.classList.remove('oculto');

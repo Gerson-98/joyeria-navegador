@@ -1,17 +1,19 @@
 :root {
-  --color-primario: #2b3350;       /* naranja Joyería, suavizado */
-  --color-primario-oscuro: #1b2238;
-  --color-acento: #b08d3c;          /* verde claro del logo */
-  --color-acento-oscuro: #8a6b25;
-  --color-fondo: #f7f4ee;           /* crema cálido, no blanco frío */
+  --color-primario: #161a2c;        /* tinta */
+  --color-primario-oscuro: #0d1020;
+  --color-acento: #b8975a;          /* oro champán */
+  --color-acento-oscuro: #8f7240;
+  --color-fondo: #f8f5ef;           /* marfil */
   --color-superficie: #ffffff;
-  --color-texto: #1c1f2b;
-  --color-texto-suave: #6b6f80;
-  --color-borde: #e3dfd3;
-  --color-error: #d64545;
-  --color-error-fondo: #fdeceb;
-  --radio: 16px;
-  --sombra: 0 4px 14px rgba(27, 34, 56, 0.12);
+  --color-texto: #1a1c26;
+  --color-texto-suave: #6f7280;
+  --color-borde: #e6dfd0;
+  --color-error: #b3392f;
+  --color-error-fondo: #f8e9e6;
+  --radio: 12px;
+  --sombra: 0 1px 2px rgba(22, 26, 44, 0.05), 0 10px 28px rgba(22, 26, 44, 0.07);
+  --fuente-titulo: "Cormorant Garamond", "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif;
+  --oro-linea: rgba(184, 151, 90, 0.55);
 }
 
 * {
@@ -2085,3 +2087,314 @@ button, input, select {
   color: var(--color-texto-suave);
   max-width: 520px;
 }
+
+
+/* =====================================================================
+   Tema fino: joyería (tinta, marfil y oro champán)
+   ===================================================================== */
+
+body {
+  -webkit-font-smoothing: antialiased;
+  letter-spacing: 0.005em;
+}
+
+h1, h2, h3,
+.app-header__titulo,
+.inicio-boton__texto,
+.tarjeta-login h1 {
+  font-family: var(--fuente-titulo);
+  font-weight: 600;
+  letter-spacing: 0.01em;
+}
+
+/* ---- Login ---- */
+.pantalla-login {
+  background:
+    radial-gradient(900px 500px at 50% -10%, rgba(184, 151, 90, 0.22), transparent 60%),
+    linear-gradient(180deg, #1c2138 0%, #0d1020 100%);
+}
+.tarjeta-login {
+  background: #fffdf9;
+  border: 1px solid var(--oro-linea);
+  border-radius: 6px;
+  box-shadow: 0 0 0 6px rgba(255, 255, 255, 0.04), 0 30px 60px rgba(0, 0, 0, 0.45);
+  padding: 44px 40px 36px;
+  position: relative;
+}
+.tarjeta-login::before {
+  content: "";
+  position: absolute;
+  inset: 8px;
+  border: 1px solid rgba(184, 151, 90, 0.25);
+  border-radius: 3px;
+  pointer-events: none;
+}
+.logo-imagen {
+  width: 96px;
+  height: 96px;
+  box-shadow: 0 6px 18px rgba(22, 26, 44, 0.25);
+}
+.tarjeta-login h1 {
+  font-size: 32px;
+  font-weight: 500;
+  margin: 14px 0 6px;
+}
+.tarjeta-login .subtitulo {
+  text-transform: uppercase;
+  letter-spacing: 0.32em;
+  font-size: 11.5px;
+  color: var(--color-acento-oscuro);
+  margin-bottom: 30px;
+}
+.pie-login { letter-spacing: 0.02em; }
+.pie-login--demo {
+  padding-top: 16px;
+  border-top: 1px solid var(--color-borde);
+  color: var(--color-texto-suave);
+}
+.pie-login--demo b { color: var(--color-acento-oscuro); }
+
+/* ---- Campos y botones ---- */
+.campo label {
+  font-size: 11.5px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: var(--color-texto-suave);
+}
+.campo input,
+.campo select {
+  background: #fff;
+  border: 1px solid #d9d0bb;
+  border-radius: 6px;
+}
+.campo input:focus,
+.campo select:focus {
+  border-color: var(--color-acento);
+  box-shadow: 0 0 0 3px rgba(184, 151, 90, 0.22);
+}
+.boton {
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  transition: background 0.15s ease, box-shadow 0.15s ease, transform 0.08s ease;
+}
+.boton:active { transform: scale(0.985); }
+.boton-primario {
+  background: linear-gradient(180deg, #1f2540, #12162a);
+  box-shadow: inset 0 0 0 1px rgba(184, 151, 90, 0.55);
+  color: #f6ecd6;
+}
+.boton-primario:hover { box-shadow: inset 0 0 0 1px var(--color-acento), 0 6px 16px rgba(22, 26, 44, 0.25); }
+.boton-primario:active { background: var(--color-primario-oscuro); }
+.boton-secundario {
+  border: 1px solid var(--oro-linea);
+  color: var(--color-primario);
+}
+
+/* ---- Encabezado y menú ---- */
+.app-header {
+  background: linear-gradient(180deg, #1c2138, #121628);
+  border-top: none;
+  border-bottom: 1px solid var(--color-acento);
+  padding: 12px 28px;
+  color: #f2ead9;
+}
+.logo-imagen--header { width: 38px; height: 38px; }
+.app-header__titulo {
+  font-size: 17px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.3em;
+  color: #f2ead9;
+}
+.app-nav { gap: 2px; }
+.app-nav a {
+  color: rgba(242, 234, 217, 0.68);
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  padding: 12px 14px;
+  border-radius: 0;
+  border-bottom: 2px solid transparent;
+  transition: color 0.15s ease, border-color 0.15s ease;
+}
+.app-nav a:hover { color: #f6ecd6; }
+.app-nav a.activo {
+  background: transparent;
+  color: #e3c98c;
+  border-bottom-color: var(--color-acento);
+}
+.app-header__usuario { color: rgba(242, 234, 217, 0.7); font-size: 13px; letter-spacing: 0.04em; }
+.boton-salir {
+  color: #f2ead9;
+  border: 1px solid rgba(184, 151, 90, 0.6);
+  border-radius: 6px;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  padding: 9px 16px;
+}
+.app-main__header h2 { font-size: 30px; font-weight: 500; }
+
+/* ---- Inicio ---- */
+.inicio-grid { gap: 18px; }
+.inicio-boton {
+  background: #fff;
+  color: var(--color-primario);
+  border: 1px solid var(--color-borde);
+  border-radius: 8px;
+  box-shadow: var(--sombra);
+  padding: 38px 16px 32px;
+  gap: 16px;
+  position: relative;
+  transition: transform 0.12s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+}
+.inicio-boton::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: 14px;
+  width: 26px;
+  height: 1px;
+  background: var(--color-acento);
+  transform: translateX(-50%);
+}
+.inicio-boton:hover { border-color: var(--color-acento); box-shadow: 0 14px 34px rgba(22, 26, 44, 0.12); }
+.inicio-boton__icono { color: var(--color-acento-oscuro); line-height: 0; }
+.inicio-boton__icono svg { width: 46px; height: 46px; }
+.inicio-boton__texto { font-size: 22px; font-weight: 600; }
+.inicio-boton--vender,
+.inicio-boton--caja,
+.inicio-boton--productos,
+.inicio-boton--clientes,
+.inicio-boton--reportes,
+.inicio-boton--respaldo,
+.inicio-boton--usuarios { background: #fff; }
+.inicio-boton--vender {
+  background: linear-gradient(180deg, #1f2540, #12162a);
+  color: #f6ecd6;
+  border-color: var(--color-acento);
+}
+.inicio-boton--vender .inicio-boton__icono { color: #e3c98c; }
+
+/* ---- Vender: joyas, categorías y ticket ---- */
+.chip-categoria {
+  border: 1px solid var(--color-borde);
+  border-radius: 4px;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  padding: 10px 16px;
+  min-height: 40px;
+}
+.chip-categoria.activo { background: var(--color-primario); border-color: var(--color-primario); color: #f6ecd6; }
+.tarjeta-venta-producto {
+  border: 1px solid var(--color-borde);
+  border-radius: 8px;
+  box-shadow: 0 1px 2px rgba(22, 26, 44, 0.05);
+  gap: 4px;
+  transition: box-shadow 0.2s ease, border-color 0.2s ease, transform 0.08s ease;
+}
+.tarjeta-venta-producto:hover { border-color: var(--color-acento); box-shadow: 0 10px 26px rgba(22, 26, 44, 0.12); }
+.tarjeta-venta-producto:active { transform: scale(0.985); border-color: var(--color-acento); }
+.tarjeta-venta-producto__nombre {
+  font-family: var(--fuente-titulo);
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 1.15;
+}
+.tarjeta-venta-producto__precio {
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  color: var(--color-acento-oscuro);
+}
+.tarjeta-venta-producto__foto { border-radius: 0; }
+.venta-carrito { border: 1px solid var(--color-borde); border-radius: 8px; }
+.venta-carrito__titulo {
+  font-size: 24px;
+  font-weight: 500;
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--oro-linea);
+}
+.chip-pago, .chip-entrega, .chip-billete {
+  border-radius: 4px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-size: 12px;
+}
+.chip-pago.activo, .chip-entrega.activo { background: var(--color-primario); border-color: var(--color-acento); color: #f6ecd6; }
+
+/* ---- Avisos, resúmenes y tarjetas ---- */
+.aviso-respaldo {
+  background: #fbf7ee;
+  color: var(--color-texto-suave);
+  border: 1px solid var(--color-borde);
+  border-radius: 6px;
+}
+.aviso-respaldo__boton {
+  background: transparent;
+  color: var(--color-acento-oscuro);
+  border: 1px solid var(--oro-linea);
+  border-radius: 4px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-size: 11px;
+}
+.aviso-respaldo__cerrar { color: var(--color-texto-suave); }
+.resumen-hoy-inicio {
+  border: 1px solid var(--color-borde);
+  border-radius: 8px;
+  border-top: 2px solid var(--color-acento);
+}
+.resumen-hoy-inicio__etiqueta { font-size: 11px; letter-spacing: 0.16em; }
+.resumen-hoy-inicio__valor {
+  font-family: var(--fuente-titulo);
+  font-size: 26px;
+  font-weight: 600;
+  text-transform: none;
+}
+.resumen-hoy-inicio__valor--ok { color: #2f6b4b; }
+.tarjeta-producto, .tarjeta-resumen, .caja-tarjeta, .tabla-reportes-envoltorio {
+  border-radius: 8px;
+}
+.modal, .tarjeta-modal { border-radius: 8px; }
+
+/* Emojis decorativos en tono apagado (los de color desentonan con una joyería) */
+.icono, .aviso-respaldo__icono, .estado-vacio .icono, .aviso-caja-cerrada .icono {
+  filter: grayscale(1) opacity(0.65);
+}
+
+/* Tablas con aire */
+.tabla-reportes th {
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--color-texto-suave);
+}
+
+/* Ajustes finos */
+.tarjeta-venta-producto { justify-content: flex-start; }
+.app-header { gap: 8px 16px; }
+@media (max-width: 1100px) {
+  .app-nav a { padding: 12px 9px; letter-spacing: 0.1em; font-size: 11.5px; }
+  .app-header__titulo { letter-spacing: 0.22em; }
+}
+.carrito-vacio .icono, .carrito-vacio span:first-child { filter: grayscale(1) opacity(0.6); }
+
+/* Reportes */
+.tarjeta-resumen { border: 1px solid var(--color-borde); border-radius: 8px; }
+.tarjeta-resumen__total { font-family: var(--fuente-titulo); font-size: 30px; font-weight: 600; letter-spacing: 0.01em; }
+.tarjeta-resumen__etiqueta { font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; }
+.pestana-periodo {
+  border-radius: 4px;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+.pestana-periodo.activa, .pestana-periodo.activo { background: var(--color-primario); border-color: var(--color-primario); color: #f6ecd6; }
+.tarjeta-resumen { min-height: 0; }

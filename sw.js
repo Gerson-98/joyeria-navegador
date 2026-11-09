@@ -1,4 +1,4 @@
-const CACHE_NAME = 'joyeria-v1';
+const CACHE_NAME = 'joyeria-v2';
 
 const ARCHIVOS_ESTATICOS = [
   './',
@@ -44,7 +44,7 @@ const ARCHIVOS_ESTATICOS = [
   './icons/icon-192.png',
   './icons/icon-512.png',
   './icons/icon-maskable-512.png',
-  './icons/logo.png'
+  './icons/logo.svg'
 ];
 
 self.addEventListener('install', (event) => {

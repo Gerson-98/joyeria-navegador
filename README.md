@@ -4,8 +4,8 @@ App web instalable (PWA) para mostrar a joyerías. Funciona sin internet y guard
 los datos en el propio dispositivo (IndexedDB).
 
 ## Acceso rápido a la demo
-- Usuario: **admin**
-- Contraseña: **12345**
+- Usuario: **demo**
+- Contraseña: **demo**
 
 No hay códigos de vendedor: quien entra con sesión queda como responsable de las ventas y la caja.
 

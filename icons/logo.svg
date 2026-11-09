@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="Joyería">
+  <defs>
+    <linearGradient id="oro" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#e3c98c"/>
+      <stop offset="1" stop-color="#b08d4a"/>
+    </linearGradient>
+  </defs>
+  <rect width="512" height="512" fill="#161a2c"/>
+  <circle cx="256" cy="256" r="222" fill="none" stroke="url(#oro)" stroke-width="4"/>
+  <g fill="none" stroke="url(#oro)" stroke-width="9" stroke-linejoin="round" stroke-linecap="round">
+    <polygon points="188,168 324,168 384,238 256,376 128,238"/>
+    <line x1="128" y1="238" x2="384" y2="238"/>
+    <polyline points="188,168 218,238 256,376 294,238 324,168"/>
+    <polyline points="218,238 256,168 294,238"/>
+  </g>
+</svg>
