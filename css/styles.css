@@ -2398,3 +2398,18 @@ h1, h2, h3,
 }
 .pestana-periodo.activa, .pestana-periodo.activo { background: var(--color-primario); border-color: var(--color-primario); color: #f6ecd6; }
 .tarjeta-resumen { min-height: 0; }
+
+/* ---------- Ajustes de celular ---------- */
+@media (max-width: 640px) {
+  .pestanas-periodo { flex-wrap: wrap; gap: 8px; }
+  .pestana-periodo { flex: 1 1 calc(50% - 8px); text-align: center; padding-left: 10px; padding-right: 10px; }
+  .tarjetas-resumen > .tarjeta-resumen { flex: 0 0 auto; min-height: 0; }
+  .modal-acciones { flex-wrap: wrap; gap: 10px; }
+  .modal-acciones .boton { flex: 1 1 calc(50% - 10px); min-width: 0; }
+  .modal-acciones .boton:last-child:nth-child(odd) { flex-basis: 100%; }
+  .tarjeta-modal { max-width: calc(100vw - 24px); max-height: calc(100dvh - 24px); overflow-y: auto; }
+}
+@media (max-width: 640px) {
+  .inicio-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
+  .inicio-boton { padding: 26px 10px 22px; gap: 10px; }
+}
